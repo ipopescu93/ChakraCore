@@ -231,7 +231,9 @@ void BuildObjectCreationTable()
     objectCreationTable.AddWeightedEntry(&BarrierObject<1001, 50000>::New, 2);
     objectCreationTable.AddWeightedEntry(&FinalizedObject<1001, 50000>::New, 2);
 //    objectCreationTable.AddWeightedEntry(&TrackedObject<1001, 50000>::New, 2);    // Large tracked objects are not supported
-//    objectCreationTable.AddWeightedEntry(&RecyclerVisitedObject<1001, 50000>::New, 2); // Large recycler visited objects are not supported
+#ifdef RECYCLER_VISITED_HOST
+    objectCreationTable.AddWeightedEntry(&RecyclerVisitedObject<1001, 50000>::New, 2);
+#endif
 }
 
 void BuildOperationTable()
